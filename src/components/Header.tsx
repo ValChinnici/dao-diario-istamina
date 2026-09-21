@@ -10,7 +10,8 @@ export function Header() {
       style={{
         background: 'var(--surface)',
         borderBottom: '1px solid var(--border)',
-        height: 56,
+        minHeight: 56,
+        paddingTop: 'env(safe-area-inset-top, 0px)',
       }}
     >
       <Link to="/" className="font-semibold text-base" style={{ color: 'var(--text)' }}>

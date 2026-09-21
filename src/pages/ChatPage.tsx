@@ -88,8 +88,9 @@ export function ChatPage() {
       } else {
         pushMessage({ id: nextId(), role: 'assistant', kind: 'ocr-results', foods: matches })
       }
-    } catch {
-      pushMessage({ id: nextId(), role: 'assistant', kind: 'text', text: t.chat.ocrNoMatches })
+    } catch (err) {
+      console.error('OCR failed', err)
+      pushMessage({ id: nextId(), role: 'assistant', kind: 'text', text: t.chat.ocrError })
     } finally {
       setAnalyzing(false)
     }

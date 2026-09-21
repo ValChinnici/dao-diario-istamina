@@ -37,6 +37,7 @@ export interface Translations {
     mealNeedsDaosin: string
     mealSafe: string
     ocrNoMatches: string
+    ocrError: string
   }
   logForm: {
     title: string
@@ -143,6 +144,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       mealNeedsDaosin: 'Prendi Daosin, un ingrediente è a rischio alto o medio.',
       mealSafe: 'Nessun ingrediente riconosciuto richiede Daosin.',
       ocrNoMatches: "Non ho riconosciuto ingredienti nel database a partire da questa foto. Prova con un'inquadratura più nitida.",
+      ocrError: "Non sono riuscito a leggere questa foto. Controlla la connessione e riprova, oppure cerca l'alimento manualmente.",
     },
     logForm: {
       title: 'Aggiungi pasto',
@@ -261,6 +263,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       mealNeedsDaosin: 'Take Daosin, one ingredient is medium or high risk.',
       mealSafe: 'None of the recognized ingredients require Daosin.',
       ocrNoMatches: "I couldn't recognize any ingredients in the database from this photo. Try a clearer shot.",
+      ocrError: 'Could not read this photo. Check your connection and try again, or search for the food manually.',
     },
     logForm: {
       title: 'Add meal',

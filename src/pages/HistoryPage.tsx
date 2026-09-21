@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { db } from '../db'
 import { ScoreBadge } from '../components/ScoreBadge'
+import { ConfirmDialog } from '../components/ConfirmDialog'
 import type { MealLogEntry } from '../types'
 
 type ScoreFilter = '' | 0 | 1 | 2 | 3
@@ -23,6 +24,7 @@ export function HistoryPage() {
   const navigate = useNavigate()
   const [dateFilter, setDateFilter] = useState('')
   const [scoreFilter, setScoreFilter] = useState<ScoreFilter>('')
+  const [pendingDelete, setPendingDelete] = useState<MealLogEntry | null>(null)
 
   const meals = useLiveQuery(() => db.meals.orderBy('timestamp').reverse().toArray(), [])
 
@@ -39,10 +41,9 @@ export function HistoryPage() {
     })
   }, [meals, dateFilter, scoreFilter])
 
-  async function handleDelete(m: MealLogEntry) {
-    if (!m.id) return
-    if (!window.confirm(t.history.confirmDelete)) return
-    await db.meals.delete(m.id)
+  async function confirmDelete() {
+    if (pendingDelete?.id) await db.meals.delete(pendingDelete.id)
+    setPendingDelete(null)
   }
 
   return (
@@ -119,7 +120,7 @@ export function HistoryPage() {
                 {t.history.edit}
               </button>
               <button
-                onClick={() => handleDelete(meal)}
+                onClick={() => setPendingDelete(meal)}
                 className="tap-target flex-1 rounded-lg text-sm font-medium"
                 style={{ background: 'var(--high-soft)', color: 'var(--high)' }}
               >
@@ -135,6 +136,14 @@ export function HistoryPage() {
           </p>
         )}
       </div>
+
+      {pendingDelete && (
+        <ConfirmDialog
+          message={t.history.confirmDelete}
+          onConfirm={confirmDelete}
+          onCancel={() => setPendingDelete(null)}
+        />
+      )}
     </div>
   )
 }

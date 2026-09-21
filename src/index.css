@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #12151a;
+  --surface: #1b1f26;
+  --surface-2: #232833;
+  --surface-3: #2b3140;
+  --border: #333b49;
+  --text: #e9ebee;
+  --text-muted: #9aa3af;
+  --text-faint: #9399a5;
+  --accent: #6fa8ab;
+  --accent-soft: #26383a;
+  --safe: #7fa383;
+  --safe-soft: #22302a;
+  --warn: #c99a55;
+  --warn-soft: #3a2f20;
+  --high: #ca7d75;
+  --high-soft: #3a2321;
+  --unsure: #9b8fae;
+  --unsure-soft: #2b2735;
+
+  --font-display: 'Zilla Slab', 'Georgia', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* minimum touch target helper */
+.tap-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 4px;
+}

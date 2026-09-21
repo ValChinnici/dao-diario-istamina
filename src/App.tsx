@@ -3,7 +3,6 @@ import { Header } from './components/Header'
 import { BottomNav } from './components/BottomNav'
 import { HomePage } from './pages/HomePage'
 import { SearchPage } from './pages/SearchPage'
-import { ChatPage } from './pages/ChatPage'
 import { LogPage } from './pages/LogPage'
 import { HistoryPage } from './pages/HistoryPage'
 import { InfoPage } from './pages/InfoPage'
@@ -16,7 +15,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/ricerca" element={<SearchPage />} />
-          <Route path="/chat" element={<ChatPage />} />
           <Route path="/aggiungi" element={<LogPage />} />
           <Route path="/aggiungi/:id" element={<LogPage />} />
           <Route path="/storico" element={<HistoryPage />} />

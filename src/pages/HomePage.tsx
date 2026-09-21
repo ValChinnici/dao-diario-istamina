@@ -65,14 +65,14 @@ export function HomePage() {
           {t.home.searchNow}
         </Link>
         <Link
-          to="/chat"
+          to="/aggiungi"
           className="tap-target rounded-2xl p-4 flex flex-col items-center justify-center gap-1 text-center font-semibold"
           style={{ background: 'var(--surface-3)', color: 'var(--text)' }}
         >
           <span aria-hidden="true" style={{ fontSize: 22 }}>
-            💬
+            +
           </span>
-          {t.home.openChat}
+          {t.home.addMeal}
         </Link>
       </div>
 

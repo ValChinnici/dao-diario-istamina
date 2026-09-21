@@ -1,13 +1,12 @@
 export interface Translations {
   appName: string
-  nav: { home: string; search: string; chat: string; log: string; history: string }
+  nav: { home: string; search: string; log: string; history: string }
   home: {
     title: string
     subtitle: string
     highRisk: string
     safe: string
     searchNow: string
-    openChat: string
     addMeal: string
     viewHistory: string
     noRecentHighRisk: string
@@ -19,26 +18,6 @@ export interface Translations {
   badge: { 0: string; 1: string; 2: string; 3: string; unsure: string }
   flags: { H: string; 'H!': string; A: string; L: string; B: string }
   search: { placeholder: string; allCategories: string; noResults: string; resultsCount: string }
-  chat: {
-    title: string
-    inputPlaceholder: string
-    send: string
-    uploadPhoto: string
-    analyzing: string
-    notFound: string
-    foundIngredients: string
-    recommendation: string
-    addToMeal: string
-    added: string
-    aiButtonLabel: string
-    aiButtonRequiresKey: string
-    aiButtonDisabled: string
-    greeting: string
-    mealNeedsDaosin: string
-    mealSafe: string
-    ocrNoMatches: string
-    ocrError: string
-  }
   logForm: {
     title: string
     editTitle: string
@@ -87,7 +66,6 @@ export const translations: Record<'it' | 'en', Translations> = {
     nav: {
       home: 'Home',
       search: 'Ricerca',
-      chat: 'Chat',
       log: 'Aggiungi pasto',
       history: 'Storico',
     },
@@ -97,7 +75,6 @@ export const translations: Record<'it' | 'en', Translations> = {
       highRisk: 'Ultimi alimenti ad alto rischio',
       safe: 'Ultimi alimenti sicuri',
       searchNow: 'Cerca un alimento ora',
-      openChat: 'Apri chat',
       addMeal: 'Aggiungi pasto',
       viewHistory: 'Vedi storico',
       noRecentHighRisk: 'Nessun alimento ad alto rischio registrato di recente.',
@@ -125,26 +102,6 @@ export const translations: Record<'it' | 'en', Translations> = {
       allCategories: 'Tutte le categorie',
       noResults: 'Nessun alimento trovato',
       resultsCount: 'risultati',
-    },
-    chat: {
-      title: 'Chat assistente',
-      inputPlaceholder: 'Scrivi il nome di un alimento o piatto...',
-      send: 'Invia',
-      uploadPhoto: 'Carica foto etichetta',
-      analyzing: "Sto leggendo l'immagine...",
-      notFound: "Non ho questo alimento nel database. Prova a cercarlo manualmente nella sezione Ricerca.",
-      foundIngredients: 'Ingredienti riconosciuti',
-      recommendation: 'Raccomandazione',
-      addToMeal: 'Aggiungi al pasto',
-      added: 'Aggiunto',
-      aiButtonLabel: 'Analizza con AI (foto piatto)',
-      aiButtonRequiresKey: 'Richiede API key (opzionale)',
-      aiButtonDisabled: 'Funzione non attiva in questa versione.',
-      greeting: "Ciao! Scrivi un alimento, oppure carica la foto di un'etichetta con la lista ingredienti.",
-      mealNeedsDaosin: 'Prendi Daosin, un ingrediente è a rischio alto o medio.',
-      mealSafe: 'Nessun ingrediente riconosciuto richiede Daosin.',
-      ocrNoMatches: "Non ho riconosciuto ingredienti nel database a partire da questa foto. Prova con un'inquadratura più nitida.",
-      ocrError: "Non sono riuscito a leggere questa foto. Controlla la connessione e riprova, oppure cerca l'alimento manualmente.",
     },
     logForm: {
       title: 'Aggiungi pasto',
@@ -206,7 +163,6 @@ export const translations: Record<'it' | 'en', Translations> = {
     nav: {
       home: 'Home',
       search: 'Search',
-      chat: 'Chat',
       log: 'Add meal',
       history: 'History',
     },
@@ -216,7 +172,6 @@ export const translations: Record<'it' | 'en', Translations> = {
       highRisk: 'Recent high-risk foods',
       safe: 'Recent safe foods',
       searchNow: 'Search a food now',
-      openChat: 'Open chat',
       addMeal: 'Add meal',
       viewHistory: 'View history',
       noRecentHighRisk: 'No high-risk foods logged recently.',
@@ -244,26 +199,6 @@ export const translations: Record<'it' | 'en', Translations> = {
       allCategories: 'All categories',
       noResults: 'No food found',
       resultsCount: 'results',
-    },
-    chat: {
-      title: 'Assistant chat',
-      inputPlaceholder: 'Type a food or dish name...',
-      send: 'Send',
-      uploadPhoto: 'Upload label photo',
-      analyzing: 'Reading the image...',
-      notFound: "I don't have this food in the database. Try searching for it manually in the Search section.",
-      foundIngredients: 'Recognized ingredients',
-      recommendation: 'Recommendation',
-      addToMeal: 'Add to meal',
-      added: 'Added',
-      aiButtonLabel: 'Analyze with AI (dish photo)',
-      aiButtonRequiresKey: 'Requires API key (optional)',
-      aiButtonDisabled: 'This feature is not active in this version.',
-      greeting: "Hi! Type a food name, or upload a photo of a label with an ingredient list.",
-      mealNeedsDaosin: 'Take Daosin, one ingredient is medium or high risk.',
-      mealSafe: 'None of the recognized ingredients require Daosin.',
-      ocrNoMatches: "I couldn't recognize any ingredients in the database from this photo. Try a clearer shot.",
-      ocrError: 'Could not read this photo. Check your connection and try again, or search for the food manually.',
     },
     logForm: {
       title: 'Add meal',

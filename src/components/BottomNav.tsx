@@ -4,7 +4,6 @@ import { useLanguage } from '../i18n/LanguageContext'
 const items = [
   { to: '/', key: 'home' as const, icon: '⌂' },
   { to: '/ricerca', key: 'search' as const, icon: '⌕' },
-  { to: '/chat', key: 'chat' as const, icon: '💬' },
   { to: '/aggiungi', key: 'log' as const, icon: '+' },
   { to: '/storico', key: 'history' as const, icon: '☰' },
 ]

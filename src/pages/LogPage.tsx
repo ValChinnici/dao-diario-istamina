@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mealMaxScore, needsDaosin } from '../data/foods'
 import { db } from '../db'
@@ -24,11 +24,9 @@ export function LogPage() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const editId = id ? Number(id) : undefined
-  const location = useLocation()
-  const draftFromChat = (location.state as { draftIngredients?: MealIngredient[] } | null)?.draftIngredients
 
   const [dateTime, setDateTime] = useState(() => toLocalDateTimeInputValue(new Date()))
-  const [ingredients, setIngredients] = useState<MealIngredient[]>(() => (!editId && draftFromChat ? draftFromChat : []))
+  const [ingredients, setIngredients] = useState<MealIngredient[]>([])
   const [daosinPreso, setDaosinPreso] = useState(false)
   const [symptoms, setSymptoms] = useState<Record<SymptomKey, SymptomEntry | undefined>>(
     {} as Record<SymptomKey, SymptomEntry | undefined>,

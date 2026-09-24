@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { foodName } from '../domain/foodName'
 import { ScoreBadge } from './ScoreBadge'
@@ -13,6 +14,14 @@ interface FoodDetailSheetProps {
 export function FoodDetailSheet({ food, onClose, footer }: FoodDetailSheetProps) {
   const { lang, t } = useLanguage()
   const needsDaosin = food.punteggio_istamina === 2 || food.punteggio_istamina === 3
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
 
   return (
     <div

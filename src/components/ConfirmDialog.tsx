@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 
 interface ConfirmDialogProps {
@@ -12,6 +13,14 @@ interface ConfirmDialogProps {
  */
 export function ConfirmDialog({ message, onConfirm, onCancel }: ConfirmDialogProps) {
   const { t } = useLanguage()
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') onCancel()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onCancel])
 
   return (
     <div

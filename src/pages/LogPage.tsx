@@ -177,7 +177,7 @@ export function LogPage() {
 
       {mealNeedsDaosin && (
         <div className="rounded-xl p-3 text-sm font-medium" style={{ background: 'var(--high-soft)', color: 'var(--high)' }}>
-          {lang === 'it' ? 'Prendi Daosin, un ingrediente è a rischio alto o medio.' : 'Take Daosin, one ingredient is medium or high risk.'}
+          {t.logForm.daosinWarning}
         </div>
       )}
 

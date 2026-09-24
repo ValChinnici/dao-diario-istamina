@@ -17,7 +17,7 @@ export interface Translations {
   }
   badge: { 0: string; 1: string; 2: string; 3: string; unsure: string }
   flags: { H: string; 'H!': string; A: string; L: string; B: string }
-  search: { placeholder: string; allCategories: string; noResults: string; resultsCount: string }
+  search: { placeholder: string; allCategories: string; noResults: string; resultsCount: string; daosinWarning: string }
   logForm: {
     title: string
     editTitle: string
@@ -27,6 +27,7 @@ export interface Translations {
     remove: string
     mealScore: string
     daosinLabel: string
+    daosinWarning: string
     symptomsTitle: string
     intensity: string
     otherSymptomPlaceholder: string
@@ -102,6 +103,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       allCategories: 'Tutte le categorie',
       noResults: 'Nessun alimento trovato',
       resultsCount: 'risultati',
+      daosinWarning: 'Serve Daosin, questo alimento ha punteggio Attenzione o Serve Daosin.',
     },
     logForm: {
       title: 'Aggiungi pasto',
@@ -112,6 +114,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       remove: 'Rimuovi',
       mealScore: 'Punteggio pasto',
       daosinLabel: 'Ho preso Daosin',
+      daosinWarning: 'Serve Daosin, un ingrediente ha punteggio Attenzione o Serve Daosin.',
       symptomsTitle: 'Sintomi post-pasto',
       intensity: 'Intensità',
       otherSymptomPlaceholder: 'Descrivi il sintomo...',
@@ -199,6 +202,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       allCategories: 'All categories',
       noResults: 'No food found',
       resultsCount: 'results',
+      daosinWarning: 'Needs Daosin, this food scores Caution or Needs Daosin.',
     },
     logForm: {
       title: 'Add meal',
@@ -209,6 +213,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       remove: 'Remove',
       mealScore: 'Meal score',
       daosinLabel: 'I took Daosin',
+      daosinWarning: 'Needs Daosin, one ingredient scores Caution or Needs Daosin.',
       symptomsTitle: 'Post-meal symptoms',
       intensity: 'Intensity',
       otherSymptomPlaceholder: 'Describe the symptom...',

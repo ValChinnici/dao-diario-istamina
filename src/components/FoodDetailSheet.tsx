@@ -52,9 +52,7 @@ export function FoodDetailSheet({ food, onClose, footer }: FoodDetailSheetProps)
             className="rounded-xl p-3 text-sm font-medium"
             style={{ background: 'var(--high-soft)', color: 'var(--high)' }}
           >
-            {lang === 'it'
-              ? 'Prendi Daosin, questo alimento ha un rischio alto o medio.'
-              : 'Take Daosin, this food is medium or high risk.'}
+            {t.search.daosinWarning}
           </div>
         )}
 

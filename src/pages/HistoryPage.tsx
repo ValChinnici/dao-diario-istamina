@@ -122,7 +122,7 @@ export function HistoryPage() {
               <button
                 onClick={() => setPendingDelete(meal)}
                 className="tap-target flex-1 rounded-lg text-sm font-medium"
-                style={{ background: 'var(--high-soft)', color: 'var(--high)' }}
+                style={{ background: 'var(--surface-3)', color: 'var(--text)', border: '1px solid var(--high)' }}
               >
                 {t.history.delete}
               </button>

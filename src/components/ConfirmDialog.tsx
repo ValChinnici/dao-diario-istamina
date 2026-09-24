@@ -38,7 +38,7 @@ export function ConfirmDialog({ message, onConfirm, onCancel }: ConfirmDialogPro
           <button
             onClick={onConfirm}
             className="tap-target flex-1 rounded-xl py-2.5 text-sm font-semibold"
-            style={{ background: 'var(--high-soft)', color: 'var(--high)' }}
+            style={{ background: 'var(--surface-3)', color: 'var(--text)', border: '1px solid var(--high)' }}
           >
             {t.common.yes}
           </button>

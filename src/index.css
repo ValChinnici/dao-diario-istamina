@@ -5,19 +5,19 @@
   --surface: #1b1f26;
   --surface-2: #232833;
   --surface-3: #2b3140;
-  --border: #333b49;
+  --border: #6f7a94;
   --text: #e9ebee;
-  --text-muted: #9aa3af;
-  --text-faint: #9399a5;
-  --accent: #6fa8ab;
+  --text-muted: #9fa6b2;
+  --text-faint: #9ea5b1;
+  --accent: #7bb2b5;
   --accent-soft: #26383a;
   --safe: #7fa383;
   --safe-soft: #22302a;
   --warn: #c99a55;
   --warn-soft: #3a2f20;
-  --high: #ca7d75;
+  --high: #d38c84;
   --high-soft: #3a2321;
-  --unsure: #9b8fae;
+  --unsure: #a599b8;
   --unsure-soft: #2b2735;
 
   --font-display: 'Zilla Slab', 'Georgia', serif;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
-import { foodName } from '../domain/foodName'
+import { foodName, foodNote } from '../domain/foodName'
 import { ScoreBadge } from './ScoreBadge'
 import { FlagChips } from './FlagChips'
 import type { FoodItem } from '../types'
@@ -67,9 +67,9 @@ export function FoodDetailSheet({ food, onClose, footer }: FoodDetailSheetProps)
 
         <FlagChips food={food} />
 
-        {food.note_it && (
+        {foodNote(food, lang) && (
           <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            {food.note_it}
+            {foodNote(food, lang)}
           </p>
         )}
 

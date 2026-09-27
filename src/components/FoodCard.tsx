@@ -1,5 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext'
-import { foodName } from '../domain/foodName'
+import { foodName, foodNote } from '../domain/foodName'
 import { ScoreBadge } from './ScoreBadge'
 import { FlagChips } from './FlagChips'
 import type { FoodItem } from '../types'
@@ -40,9 +40,9 @@ export function FoodCard({ food, onClick, action }: FoodCardProps) {
         <ScoreBadge score={food.punteggio_istamina} incerto={food.punteggio_incerto} size="sm" />
         <FlagChips food={food} />
       </div>
-      {food.note_it && (
+      {foodNote(food, lang) && (
         <p className="text-sm line-clamp-2" style={{ color: 'var(--text-muted)' }}>
-          {food.note_it}
+          {foodNote(food, lang)}
         </p>
       )}
     </Wrapper>

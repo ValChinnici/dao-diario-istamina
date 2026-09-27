@@ -15,6 +15,7 @@ export interface FoodItem {
   liberatore: boolean
   bloccante: boolean
   note_it: string
+  note_en: string
 }
 
 export const SYMPTOM_KEYS = [

@@ -17,6 +17,14 @@ export interface Translations {
   }
   badge: { 0: string; 1: string; 2: string; 3: string; unsure: string }
   flags: { H: string; 'H!': string; A: string; L: string; B: string }
+  legend: {
+    title: string
+    scoreTitle: string
+    flagsTitle: string
+    scores: { 0: string; 1: string; 2: string; 3: string; '-': string; '?': string }
+    flags: { H: string; 'H!': string; A: string; L: string; B: string }
+    note: string
+  }
   search: { placeholder: string; allCategories: string; noResults: string; resultsCount: string; daosinWarning: string }
   logForm: {
     title: string
@@ -97,6 +105,27 @@ export const translations: Record<'it' | 'en', Translations> = {
       A: 'Altre ammine biogene',
       L: 'Liberatore di mediatori dei mastociti',
       B: 'Bloccante della diammina ossidasi',
+    },
+    legend: {
+      title: 'Legenda',
+      scoreTitle: 'Punteggio istamina',
+      flagsTitle: 'Lettere (H, A, L, B...)',
+      scores: {
+        0: 'Ben tollerato. Non si prevedono sintomi se consumato in quantità normali.',
+        1: 'Moderatamente tollerato, sintomi lievi, il consumo occasionale di piccole quantità è spesso tollerato.',
+        2: 'Intollerabile, sintomi evidenti con quantità di consumo normale.',
+        3: 'Molto mal tollerato, sintomi gravi.',
+        '-': "Non è possibile un'affermazione generalmente valida.",
+        '?': 'Informazioni insufficienti o contraddittorie.',
+      },
+      flags: {
+        H: 'Alto contenuto di istamina.',
+        'H!': 'Altamente deperibile, formazione rapida di istamina.',
+        A: "Altre ammine biogene (oltre all'istamina, es. tiramina, feniletilamina).",
+        L: "Liberatore dei mediatori dei mastociti (=liberatore di istamina): non contiene istamina ma ne stimola il rilascio da parte dell'organismo.",
+        B: "Bloccante della diammina ossidasi (DAO) o di altri enzimi che degradano l'istamina: può ridurre l'efficacia dell'enzima che smaltisce l'istamina.",
+      },
+      note: "Una voce può avere più flag insieme (es. 'H A' = alto contenuto di istamina e altre ammine biogene). '?' accanto a un flag significa che quel dato specifico è incerto, non l'intera voce.",
     },
     search: {
       placeholder: 'Cerca un alimento...',
@@ -196,6 +225,27 @@ export const translations: Record<'it' | 'en', Translations> = {
       A: 'Other biogenic amines',
       L: 'Mast cell mediator liberator',
       B: 'Diamine oxidase blocker',
+    },
+    legend: {
+      title: 'Legend',
+      scoreTitle: 'Histamine score',
+      flagsTitle: 'Letters (H, A, L, B...)',
+      scores: {
+        0: 'Well tolerated. No symptoms expected if consumed in normal amounts.',
+        1: 'Moderately tolerated, mild symptoms, occasional consumption of small amounts is often tolerated.',
+        2: 'Intolerable, noticeable symptoms with normal consumption amounts.',
+        3: 'Very poorly tolerated, severe symptoms.',
+        '-': 'No generally valid statement is possible.',
+        '?': 'Insufficient or contradictory information.',
+      },
+      flags: {
+        H: 'High histamine content.',
+        'H!': 'Highly perishable, rapid histamine formation.',
+        A: 'Other biogenic amines (besides histamine, e.g. tyramine, phenylethylamine).',
+        L: 'Mast cell mediator liberator (=histamine liberator): does not itself contain histamine but triggers its release by the body.',
+        B: 'Blocker of diamine oxidase (DAO) or other histamine-degrading enzymes: can reduce the effectiveness of the enzyme that clears histamine.',
+      },
+      note: "An entry can carry more than one flag at once (e.g. 'H A' = high histamine content and other biogenic amines). A '?' next to a flag means that specific piece of data is uncertain, not the whole entry.",
     },
     search: {
       placeholder: 'Search a food...',

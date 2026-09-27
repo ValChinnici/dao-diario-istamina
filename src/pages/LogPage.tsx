@@ -135,7 +135,12 @@ export function LogPage() {
         <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
           {t.logForm.searchFood}
         </span>
-        <FoodPicker placeholder={t.search.placeholder} onPick={addIngredient} />
+        <FoodPicker
+          placeholder={t.search.placeholder}
+          onPick={addIngredient}
+          isAdded={(food) => ingredients.some((i) => i.foodId === food.id)}
+          alreadyAddedLabel={t.logForm.alreadyAdded}
+        />
       </div>
 
       {ingredients.length > 0 && (

@@ -13,11 +13,21 @@ interface FoodCardProps {
 export function FoodCard({ food, onClick, action }: FoodCardProps) {
   const { lang } = useLanguage()
 
-  const Wrapper = onClick ? 'button' : 'div'
-
   return (
-    <Wrapper
+    <div
       onClick={onClick}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onClick()
+              }
+            }
+          : undefined
+      }
       className="w-full text-left rounded-2xl p-4 flex flex-col gap-2 transition-colors"
       style={{
         background: 'var(--surface)',
@@ -45,6 +55,6 @@ export function FoodCard({ food, onClick, action }: FoodCardProps) {
           {foodNote(food, lang)}
         </p>
       )}
-    </Wrapper>
+    </div>
   )
 }

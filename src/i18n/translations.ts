@@ -16,7 +16,6 @@ export interface Translations {
     weeklyChartRisk: string
   }
   badge: { 0: string; 1: string; 2: string; 3: string; unsure: string }
-  flags: { H: string; 'H!': string; A: string; L: string; B: string }
   legend: {
     title: string
     scoreTitle: string
@@ -43,6 +42,7 @@ export interface Translations {
     cancel: string
     addAtLeastOne: string
     saved: string
+    alreadyAdded: string
   }
   symptoms: {
     mal_di_testa: string
@@ -99,13 +99,6 @@ export const translations: Record<'it' | 'en', Translations> = {
       3: 'Serve Daosin',
       unsure: 'Dato incerto',
     },
-    flags: {
-      H: 'Ricco di istamina',
-      'H!': 'Altamente deperibile, formazione rapida di istamina',
-      A: 'Altre ammine biogene',
-      L: 'Liberatore di mediatori dei mastociti',
-      B: 'Bloccante della diammina ossidasi',
-    },
     legend: {
       title: 'Legenda',
       scoreTitle: 'Punteggio istamina',
@@ -151,6 +144,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       cancel: 'Annulla',
       addAtLeastOne: 'Aggiungi almeno un alimento prima di salvare.',
       saved: 'Pasto salvato.',
+      alreadyAdded: 'Già aggiunto',
     },
     symptoms: {
       mal_di_testa: 'Mal di testa',
@@ -219,13 +213,6 @@ export const translations: Record<'it' | 'en', Translations> = {
       3: 'Needs Daosin',
       unsure: 'Uncertain data',
     },
-    flags: {
-      H: 'Rich in histamine',
-      'H!': 'Highly perishable, rapid histamine formation',
-      A: 'Other biogenic amines',
-      L: 'Mast cell mediator liberator',
-      B: 'Diamine oxidase blocker',
-    },
     legend: {
       title: 'Legend',
       scoreTitle: 'Histamine score',
@@ -271,6 +258,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       cancel: 'Cancel',
       addAtLeastOne: 'Add at least one food before saving.',
       saved: 'Meal saved.',
+      alreadyAdded: 'Already added',
     },
     symptoms: {
       mal_di_testa: 'Headache',

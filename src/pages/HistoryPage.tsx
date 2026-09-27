@@ -111,7 +111,7 @@ export function HistoryPage() {
               ))}
             </div>
 
-            <div className="flex gap-2 mt-1">
+            <div className="flex items-center gap-2 mt-1">
               <button
                 onClick={() => navigate(`/aggiungi/${meal.id}`)}
                 className="tap-target flex-1 rounded-lg text-sm font-medium"
@@ -121,8 +121,8 @@ export function HistoryPage() {
               </button>
               <button
                 onClick={() => setPendingDelete(meal)}
-                className="tap-target flex-1 rounded-lg text-sm font-medium"
-                style={{ background: 'var(--surface-3)', color: 'var(--text)', border: '1px solid var(--high)' }}
+                className="tap-target rounded-lg text-sm font-medium px-3"
+                style={{ background: 'transparent', color: 'var(--high)' }}
               >
                 {t.history.delete}
               </button>

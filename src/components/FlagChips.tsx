@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
+import { foodFlags } from '../domain/flags'
 import type { FoodItem } from '../types'
 
 interface FlagChipsProps {
@@ -10,13 +11,7 @@ export function FlagChips({ food }: FlagChipsProps) {
   const { t } = useLanguage()
   const [expanded, setExpanded] = useState<string | null>(null)
 
-  const chips: { key: string; label: string; description: string }[] = []
-  if (food.ricco_istamina) {
-    chips.push({ key: food.ricco_istamina, label: food.ricco_istamina, description: t.legend.flags[food.ricco_istamina] })
-  }
-  if (food.altre_ammine) chips.push({ key: 'A', label: 'A', description: t.legend.flags.A })
-  if (food.liberatore) chips.push({ key: 'L', label: 'L', description: t.legend.flags.L })
-  if (food.bloccante) chips.push({ key: 'B', label: 'B', description: t.legend.flags.B })
+  const chips = foodFlags(food).map((flag) => ({ key: flag, label: flag, description: t.legend.flags[flag as keyof typeof t.legend.flags] }))
 
   if (chips.length === 0) return null
 

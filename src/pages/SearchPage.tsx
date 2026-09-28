@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { searchFoods } from '../domain/search'
 import { foodName } from '../domain/foodName'
+import { foodFlags } from '../domain/flags'
 import { foods, categories } from '../data/foods'
 import { ScoreBadge } from '../components/ScoreBadge'
 import { FoodDetailSheet } from '../components/FoodDetailSheet'
@@ -84,9 +85,29 @@ export function SearchPage() {
                     <div className="font-semibold truncate" style={{ color: 'var(--text)' }}>
                       {foodName(food, lang)}
                     </div>
-                    <div className="text-xs truncate mt-0.5" style={{ color: 'var(--text-faint)' }}>
-                      {food.categoria}
-                      {food.sottocategoria ? ` · ${food.sottocategoria}` : ''}
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <span className="text-xs truncate" style={{ color: 'var(--text-faint)' }}>
+                        {food.categoria}
+                        {food.sottocategoria ? ` · ${food.sottocategoria}` : ''}
+                      </span>
+                      {foodFlags(food).length > 0 && (
+                        <span className="flex items-center gap-1 shrink-0">
+                          {foodFlags(food).map((flag) => (
+                            <span
+                              key={flag}
+                              className="inline-flex items-center justify-center rounded text-[10px] font-semibold leading-none"
+                              style={{
+                                background: 'var(--surface-3)',
+                                color: 'var(--text-muted)',
+                                border: '1px solid var(--border)',
+                                padding: '2px 5px',
+                              }}
+                            >
+                              {flag}
+                            </span>
+                          ))}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <ScoreBadge score={food.punteggio_istamina} incerto={food.punteggio_incerto} size="sm" />

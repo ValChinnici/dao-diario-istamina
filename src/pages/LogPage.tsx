@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Check, X } from '@phosphor-icons/react'
+import { Check, Tag, X } from '@phosphor-icons/react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mealMaxScore, needsDaosin } from '../data/foods'
 import { db } from '../db'
 import { FoodPicker } from '../components/FoodPicker'
 import { ScoreBadge } from '../components/ScoreBadge'
-import { SYMPTOM_KEYS } from '../types'
-import type { FoodItem, MealIngredient, SymptomEntry, SymptomKey } from '../types'
+import { PRESERVATION_KEYS, SYMPTOM_KEYS } from '../types'
+import type { FoodItem, MealIngredient, PreservationType, SymptomEntry, SymptomKey } from '../types'
 
 function toLocalDateTimeInputValue(date: Date): string {
   const pad = (n: number) => String(n).padStart(2, '0')
@@ -35,6 +35,7 @@ export function LogPage() {
   const [otherNote, setOtherNote] = useState('')
   const [error, setError] = useState('')
   const [saved, setSaved] = useState(false)
+  const [expandedIngredient, setExpandedIngredient] = useState<string | null>(null)
 
   useEffect(() => {
     if (!editId) return
@@ -68,6 +69,13 @@ export function LogPage() {
 
   function removeIngredient(foodId: string) {
     setIngredients((prev) => prev.filter((i) => i.foodId !== foodId))
+    setExpandedIngredient((prev) => (prev === foodId ? null : prev))
+  }
+
+  function setIngredientPreservation(foodId: string, preservation: PreservationType) {
+    setIngredients((prev) =>
+      prev.map((i) => (i.foodId === foodId ? { ...i, preservation: i.preservation === preservation ? undefined : preservation } : i)),
+    )
   }
 
   function toggleSymptom(key: SymptomKey) {
@@ -149,28 +157,70 @@ export function LogPage() {
           <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
             {t.logForm.ingredients}
           </span>
-          {ingredients.map((ing) => (
-            <div
-              key={ing.foodId}
-              className="flex items-center justify-between gap-2 rounded-xl px-3 py-2"
-              style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
-            >
-              <span className="truncate text-sm" style={{ color: 'var(--text)' }}>
-                {lang === 'en' && ing.nome_en ? ing.nome_en : ing.nome_it}
-              </span>
-              <div className="flex items-center gap-2 shrink-0">
-                <ScoreBadge score={ing.punteggio_istamina} size="sm" />
-                <button
-                  onClick={() => removeIngredient(ing.foodId)}
-                  aria-label={t.logForm.remove}
-                  className="tap-target press-feedback rounded-full flex items-center justify-center"
-                  style={{ color: 'var(--text-faint)' }}
-                >
-                  <X size={16} weight="bold" aria-hidden="true" />
-                </button>
+          {ingredients.map((ing) => {
+            const isExpanded = expandedIngredient === ing.foodId
+            return (
+              <div
+                key={ing.foodId}
+                className="rounded-xl px-3 py-2 flex flex-col gap-2"
+                style={{ background: 'var(--surface-2)', border: '1px solid var(--border)' }}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <div className="truncate text-sm" style={{ color: 'var(--text)' }}>
+                      {lang === 'en' && ing.nome_en ? ing.nome_en : ing.nome_it}
+                    </div>
+                    {ing.preservation && (
+                      <div className="text-xs truncate mt-0.5" style={{ color: 'var(--text-faint)' }}>
+                        {t.logForm.preservation[ing.preservation]}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <ScoreBadge score={ing.punteggio_istamina} size="sm" />
+                    <button
+                      onClick={() => setExpandedIngredient(isExpanded ? null : ing.foodId)}
+                      aria-label={t.logForm.preservationToggle}
+                      aria-expanded={isExpanded}
+                      className="tap-target press-feedback rounded-full flex items-center justify-center"
+                      style={{ color: ing.preservation ? 'var(--accent)' : 'var(--text-faint)' }}
+                    >
+                      <Tag size={16} weight={ing.preservation ? 'fill' : 'light'} aria-hidden="true" />
+                    </button>
+                    <button
+                      onClick={() => removeIngredient(ing.foodId)}
+                      aria-label={t.logForm.remove}
+                      className="tap-target press-feedback rounded-full flex items-center justify-center"
+                      style={{ color: 'var(--text-faint)' }}
+                    >
+                      <X size={16} weight="bold" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+                {isExpanded && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {PRESERVATION_KEYS.map((key) => {
+                      const active = ing.preservation === key
+                      return (
+                        <button
+                          key={key}
+                          onClick={() => setIngredientPreservation(ing.foodId, key)}
+                          className="tap-target press-feedback rounded-full px-3 py-1.5 text-xs font-medium"
+                          style={{
+                            background: active ? 'var(--accent-soft)' : 'var(--surface-3)',
+                            color: active ? 'var(--accent)' : 'var(--text-muted)',
+                            border: `1px solid ${active ? 'var(--accent)' : 'var(--border)'}`,
+                          }}
+                        >
+                          {t.logForm.preservation[key]}
+                        </button>
+                      )
+                    })}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            )
+          })}
 
           <div className="flex items-center justify-between rounded-xl px-3 py-2" style={{ background: 'var(--surface-3)' }}>
             <span className="text-sm font-medium" style={{ color: 'var(--text)' }}>

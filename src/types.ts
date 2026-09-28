@@ -36,11 +36,16 @@ export interface SymptomEntry {
   nota?: string
 }
 
+export const PRESERVATION_KEYS = ['fresh', 'reheated', 'canned', 'aged', 'defrosted'] as const
+
+export type PreservationType = (typeof PRESERVATION_KEYS)[number]
+
 export interface MealIngredient {
   foodId: string
   nome_it: string
   nome_en: string
   punteggio_istamina: IstaminaScore
+  preservation?: PreservationType
 }
 
 export interface MealLogEntry {

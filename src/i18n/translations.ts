@@ -50,6 +50,8 @@ export interface Translations {
     addAtLeastOne: string
     saved: string
     alreadyAdded: string
+    preservationToggle: string
+    preservation: { fresh: string; reheated: string; canned: string; aged: string; defrosted: string }
   }
   symptoms: {
     mal_di_testa: string
@@ -153,6 +155,14 @@ export const translations: Record<'it' | 'en', Translations> = {
       addAtLeastOne: 'Aggiungi almeno un alimento prima di salvare.',
       saved: 'Pasto salvato.',
       alreadyAdded: 'Già aggiunto',
+      preservationToggle: 'Conservazione',
+      preservation: {
+        fresh: 'Fresco',
+        reheated: 'Riscaldato',
+        canned: 'In scatola',
+        aged: 'Stagionato',
+        defrosted: 'Decongelato',
+      },
     },
     symptoms: {
       mal_di_testa: 'Mal di testa',
@@ -268,6 +278,14 @@ export const translations: Record<'it' | 'en', Translations> = {
       addAtLeastOne: 'Add at least one food before saving.',
       saved: 'Meal saved.',
       alreadyAdded: 'Already added',
+      preservationToggle: 'Preservation',
+      preservation: {
+        fresh: 'Fresh',
+        reheated: 'Reheated',
+        canned: 'Canned',
+        aged: 'Aged',
+        defrosted: 'Defrosted',
+      },
     },
     symptoms: {
       mal_di_testa: 'Headache',

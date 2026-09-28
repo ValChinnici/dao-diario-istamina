@@ -88,7 +88,12 @@ export function HistoryPage() {
             </div>
 
             <p className="text-sm" style={{ color: 'var(--text)' }}>
-              {meal.ingredienti.map((i) => (lang === 'en' && i.nome_en ? i.nome_en : i.nome_it)).join(', ')}
+              {meal.ingredienti
+                .map((i) => {
+                  const name = lang === 'en' && i.nome_en ? i.nome_en : i.nome_it
+                  return i.preservation ? `${name} · ${t.logForm.preservation[i.preservation]}` : name
+                })
+                .join(', ')}
             </p>
 
             <div className="flex items-center gap-2 flex-wrap">

@@ -28,7 +28,7 @@ export function FoodCard({ food, onClick, action }: FoodCardProps) {
             }
           : undefined
       }
-      className="w-full text-left rounded-2xl p-4 flex flex-col gap-2 transition-colors"
+      className="w-full text-left rounded-2xl p-4 flex flex-col gap-2 transition-colors press-feedback"
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',

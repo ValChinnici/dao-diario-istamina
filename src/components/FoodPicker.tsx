@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Check } from '@phosphor-icons/react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { searchFoods } from '../domain/search'
 import { foodName } from '../domain/foodName'
@@ -33,16 +34,17 @@ export function FoodPicker({ placeholder, onPick, isAdded, alreadyAddedLabel }: 
       />
       {results.length > 0 && (
         <div
-          className="absolute left-0 right-0 mt-2 flex flex-col gap-2 rounded-xl p-2 overflow-y-auto"
+          className="anim-scale-in absolute left-0 right-0 mt-2 rounded-xl overflow-y-auto"
           style={{
             background: 'var(--surface-2)',
             border: '1px solid var(--border)',
             boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
             maxHeight: 280,
             zIndex: 30,
+            transformOrigin: 'top center',
           }}
         >
-          {results.map((food) => {
+          {results.map((food, i) => {
             const added = isAdded?.(food) ?? false
             return (
               <button
@@ -54,19 +56,19 @@ export function FoodPicker({ placeholder, onPick, isAdded, alreadyAddedLabel }: 
                   onPick(food)
                   setQuery('')
                 }}
-                className="tap-target w-full text-left rounded-xl px-3 py-2 flex items-center justify-between gap-2"
+                className="tap-target w-full text-left px-3 py-2.5 flex items-center justify-between gap-2"
                 style={{
-                  background: 'var(--surface-3)',
-                  border: '1px solid var(--border)',
                   opacity: added ? 0.6 : 1,
+                  borderTop: i > 0 ? '1px solid var(--surface-3)' : undefined,
                 }}
               >
                 <span className="truncate text-sm" style={{ color: 'var(--text)' }}>
                   {foodName(food, lang)}
                 </span>
                 {added ? (
-                  <span className="text-xs shrink-0" style={{ color: 'var(--safe)' }}>
-                    ✓ {alreadyAddedLabel}
+                  <span className="text-xs shrink-0 inline-flex items-center gap-1" style={{ color: 'var(--safe)' }}>
+                    <Check size={14} weight="bold" aria-hidden="true" />
+                    {alreadyAddedLabel}
                   </span>
                 ) : (
                   <ScoreBadge score={food.punteggio_istamina} incerto={food.punteggio_incerto} size="sm" />

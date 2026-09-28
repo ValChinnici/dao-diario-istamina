@@ -24,12 +24,12 @@ export function ConfirmDialog({ message, onConfirm, onCancel }: ConfirmDialogPro
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="anim-fade-in fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.55)' }}
       onClick={onCancel}
     >
       <div
-        className="w-full max-w-sm rounded-2xl p-5 flex flex-col gap-4"
+        className="anim-scale-in w-full max-w-sm rounded-2xl p-5 flex flex-col gap-4"
         style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -39,14 +39,14 @@ export function ConfirmDialog({ message, onConfirm, onCancel }: ConfirmDialogPro
         <div className="flex gap-2">
           <button
             onClick={onCancel}
-            className="tap-target flex-1 rounded-xl py-2.5 text-sm font-medium"
+            className="tap-target press-feedback flex-1 rounded-xl py-2.5 text-sm font-medium"
             style={{ background: 'var(--surface-3)', color: 'var(--text)' }}
           >
             {t.common.no}
           </button>
           <button
             onClick={onConfirm}
-            className="tap-target flex-1 rounded-xl py-2.5 text-sm font-semibold"
+            className="tap-target press-feedback flex-1 rounded-xl py-2.5 text-sm font-semibold"
             style={{ background: 'var(--surface-3)', color: 'var(--text)', border: '1px solid var(--high)' }}
           >
             {t.common.yes}

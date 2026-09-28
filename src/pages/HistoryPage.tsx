@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useNavigate } from 'react-router-dom'
+import { PencilSimple, Trash } from '@phosphor-icons/react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { db } from '../db'
 import { ScoreBadge } from '../components/ScoreBadge'
@@ -114,16 +115,18 @@ export function HistoryPage() {
             <div className="flex items-center gap-2 mt-1">
               <button
                 onClick={() => navigate(`/aggiungi/${meal.id}`)}
-                className="tap-target flex-1 rounded-lg text-sm font-medium"
+                className="tap-target press-feedback flex-1 rounded-lg text-sm font-medium flex items-center justify-center gap-1.5"
                 style={{ background: 'var(--surface-3)', color: 'var(--text)' }}
               >
+                <PencilSimple size={16} weight="light" aria-hidden="true" />
                 {t.history.edit}
               </button>
               <button
                 onClick={() => setPendingDelete(meal)}
-                className="tap-target rounded-lg text-sm font-medium px-3"
+                className="tap-target press-feedback rounded-lg text-sm font-medium px-3 flex items-center justify-center gap-1.5"
                 style={{ background: 'transparent', color: 'var(--high)' }}
               >
+                <Trash size={16} weight="light" aria-hidden="true" />
                 {t.history.delete}
               </button>
             </div>

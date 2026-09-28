@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
+import { House, MagnifyingGlass, Plus, ClockCounterClockwise } from '@phosphor-icons/react'
 import { useLanguage } from '../i18n/LanguageContext'
 
 const items = [
-  { to: '/', key: 'home' as const, icon: '⌂' },
-  { to: '/ricerca', key: 'search' as const, icon: '⌕' },
-  { to: '/aggiungi', key: 'log' as const, icon: '+' },
-  { to: '/storico', key: 'history' as const, icon: '☰' },
+  { to: '/', key: 'home' as const, Icon: House, end: true },
+  { to: '/ricerca', key: 'search' as const, Icon: MagnifyingGlass, end: false },
+  { to: '/aggiungi', key: 'log' as const, Icon: Plus, end: false },
+  { to: '/storico', key: 'history' as const, Icon: ClockCounterClockwise, end: false },
 ]
 
 export function BottomNav() {
@@ -20,20 +21,22 @@ export function BottomNav() {
         paddingBottom: 'env(safe-area-inset-bottom)',
       }}
     >
-      {items.map((item) => (
+      {items.map(({ to, key, Icon, end }) => (
         <NavLink
-          key={item.to}
-          to={item.to}
-          end={item.to === '/'}
-          className="tap-target flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-[11px]"
+          key={to}
+          to={to}
+          end={end}
+          className="tap-target flex-1 flex flex-col items-center justify-center gap-0.5 py-2 text-[11px] transition-colors duration-200"
           style={({ isActive }) => ({
             color: isActive ? 'var(--accent)' : 'var(--text-faint)',
           })}
         >
-          <span aria-hidden="true" style={{ fontSize: 18 }}>
-            {item.icon}
-          </span>
-          {t.nav[item.key]}
+          {({ isActive }) => (
+            <>
+              <Icon size={20} weight={isActive ? 'fill' : 'light'} />
+              {t.nav[key]}
+            </>
+          )}
         </NavLink>
       ))}
     </nav>

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Check, X } from '@phosphor-icons/react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mealMaxScore, needsDaosin } from '../data/foods'
 import { db } from '../db'
@@ -162,10 +163,10 @@ export function LogPage() {
                 <button
                   onClick={() => removeIngredient(ing.foodId)}
                   aria-label={t.logForm.remove}
-                  className="tap-target rounded-full flex items-center justify-center"
+                  className="tap-target press-feedback rounded-full flex items-center justify-center"
                   style={{ color: 'var(--text-faint)' }}
                 >
-                  ✕
+                  <X size={16} weight="bold" aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -205,58 +206,63 @@ export function LogPage() {
         <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
           {t.logForm.symptomsTitle}
         </span>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-2">
           {SYMPTOM_KEYS.map((key) => {
             const active = Boolean(symptoms[key])
             return (
-              <div
+              <button
                 key={key}
-                className="rounded-xl px-3 py-2"
-                style={{ background: active ? 'var(--warn-soft)' : 'var(--surface)', border: '1px solid var(--border)' }}
+                onClick={() => toggleSymptom(key)}
+                className="tap-target press-feedback rounded-full px-3.5 py-2 text-sm font-medium inline-flex items-center gap-1.5"
+                style={{
+                  background: active ? 'var(--warn-soft)' : 'var(--surface)',
+                  color: active ? 'var(--warn)' : 'var(--text)',
+                  border: `1px solid ${active ? 'var(--warn)' : 'var(--border)'}`,
+                }}
               >
-                <button
-                  onClick={() => toggleSymptom(key)}
-                  className="tap-target w-full flex items-center justify-between text-sm"
-                  style={{ color: active ? 'var(--warn)' : 'var(--text)' }}
-                >
-                  {t.symptoms[key]}
-                  <span aria-hidden="true">{active ? '✓' : ''}</span>
-                </button>
-                {active && (
-                  <div className="flex items-center gap-2 mt-2">
-                    <span className="text-xs" style={{ color: 'var(--text-faint)' }}>
-                      {t.logForm.intensity}
-                    </span>
-                    {[1, 2, 3].map((level) => (
-                      <button
-                        key={level}
-                        onClick={() => setSymptomIntensity(key, level as 1 | 2 | 3)}
-                        className="tap-target rounded-full flex items-center justify-center text-xs font-semibold"
-                        style={{
-                          width: 32,
-                          height: 32,
-                          background: symptoms[key]?.intensita === level ? 'var(--warn)' : 'var(--surface-3)',
-                          color: symptoms[key]?.intensita === level ? 'var(--bg)' : 'var(--text-muted)',
-                        }}
-                      >
-                        {level}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {key === 'altro' && active && (
-                  <input
-                    value={otherNote}
-                    onChange={(e) => setOtherNote(e.target.value)}
-                    placeholder={t.logForm.otherSymptomPlaceholder}
-                    className="w-full mt-2 rounded-lg px-3 py-2 text-sm outline-none"
-                    style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', color: 'var(--text)' }}
-                  />
-                )}
-              </div>
+                {active && <Check size={14} weight="bold" aria-hidden="true" />}
+                {t.symptoms[key]}
+              </button>
             )
           })}
         </div>
+
+        {SYMPTOM_KEYS.filter((key) => symptoms[key]).map((key) => (
+          <div key={key} className="rounded-xl px-3 py-2.5 flex flex-col gap-2" style={{ background: 'var(--warn-soft)' }}>
+            <span className="text-sm font-medium" style={{ color: 'var(--warn)' }}>
+              {t.symptoms[key]}
+            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs" style={{ color: 'var(--text-faint)' }}>
+                {t.logForm.intensity}
+              </span>
+              {[1, 2, 3].map((level) => (
+                <button
+                  key={level}
+                  onClick={() => setSymptomIntensity(key, level as 1 | 2 | 3)}
+                  className="tap-target press-feedback rounded-full flex items-center justify-center text-xs font-semibold"
+                  style={{
+                    width: 32,
+                    height: 32,
+                    background: symptoms[key]?.intensita === level ? 'var(--warn)' : 'var(--surface-3)',
+                    color: symptoms[key]?.intensita === level ? 'var(--bg)' : 'var(--text-muted)',
+                  }}
+                >
+                  {level}
+                </button>
+              ))}
+            </div>
+            {key === 'altro' && (
+              <input
+                value={otherNote}
+                onChange={(e) => setOtherNote(e.target.value)}
+                placeholder={t.logForm.otherSymptomPlaceholder}
+                className="w-full rounded-lg px-3 py-2 text-sm outline-none"
+                style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', color: 'var(--text)' }}
+              />
+            )}
+          </div>
+        ))}
       </div>
 
       {error && (

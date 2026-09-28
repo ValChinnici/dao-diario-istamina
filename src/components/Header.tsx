@@ -1,5 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext'
 import { Link } from 'react-router-dom'
+import { Info } from '@phosphor-icons/react'
 
 export function Header() {
   const { lang, setLang, t } = useLanguage()
@@ -21,10 +22,10 @@ export function Header() {
         <Link
           to="/info"
           aria-label={t.info.title}
-          className="tap-target rounded-full flex items-center justify-center"
+          className="tap-target press-feedback rounded-full flex items-center justify-center"
           style={{ color: 'var(--text-faint)', width: 36, height: 36 }}
         >
-          ⓘ
+          <Info size={20} weight="light" />
         </Link>
         <div
           role="group"

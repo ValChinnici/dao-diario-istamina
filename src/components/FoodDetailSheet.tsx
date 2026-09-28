@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { X } from '@phosphor-icons/react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { foodName, foodNote } from '../domain/foodName'
 import { ScoreBadge } from './ScoreBadge'
@@ -25,12 +26,12 @@ export function FoodDetailSheet({ food, onClose, footer }: FoodDetailSheetProps)
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+      className="anim-fade-in fixed inset-0 z-50 flex items-end sm:items-center justify-center"
       style={{ background: 'rgba(0,0,0,0.55)' }}
       onClick={onClose}
     >
       <div
-        className="w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl p-5 flex flex-col gap-4 max-h-[85vh] overflow-y-auto"
+        className="anim-sheet-up w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl p-5 flex flex-col gap-4 max-h-[85vh] overflow-y-auto"
         style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -47,10 +48,10 @@ export function FoodDetailSheet({ food, onClose, footer }: FoodDetailSheetProps)
           <button
             onClick={onClose}
             aria-label={t.common.close}
-            className="tap-target rounded-full flex items-center justify-center shrink-0"
+            className="tap-target press-feedback rounded-full flex items-center justify-center shrink-0"
             style={{ background: 'var(--surface-3)', color: 'var(--text-muted)' }}
           >
-            ✕
+            <X size={18} weight="bold" aria-hidden="true" />
           </button>
         </div>
 

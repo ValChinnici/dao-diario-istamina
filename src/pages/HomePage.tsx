@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Link } from 'react-router-dom'
+import { MagnifyingGlass, Plus } from '@phosphor-icons/react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { db } from '../db'
 import { ScoreBadge } from '../components/ScoreBadge'
@@ -56,22 +57,18 @@ export function HomePage() {
       <div className="grid grid-cols-2 gap-3">
         <Link
           to="/ricerca"
-          className="tap-target rounded-2xl p-4 flex flex-col items-center justify-center gap-1 text-center font-semibold"
-          style={{ background: 'var(--accent-soft)', color: 'var(--accent)' }}
+          className="tap-target press-feedback rounded-2xl p-4 flex flex-col items-center justify-center gap-1.5 text-center font-semibold"
+          style={{ background: 'var(--accent)', color: 'var(--bg)' }}
         >
-          <span aria-hidden="true" style={{ fontSize: 22 }}>
-            ⌕
-          </span>
+          <MagnifyingGlass size={22} weight="bold" aria-hidden="true" />
           {t.home.searchNow}
         </Link>
         <Link
           to="/aggiungi"
-          className="tap-target rounded-2xl p-4 flex flex-col items-center justify-center gap-1 text-center font-semibold"
-          style={{ background: 'var(--surface-3)', color: 'var(--text)' }}
+          className="tap-target press-feedback rounded-2xl p-4 flex flex-col items-center justify-center gap-1.5 text-center font-semibold"
+          style={{ background: 'var(--surface-2)', color: 'var(--text)', border: '1px solid var(--border)' }}
         >
-          <span aria-hidden="true" style={{ fontSize: 22 }}>
-            +
-          </span>
+          <Plus size={22} weight="bold" aria-hidden="true" />
           {t.home.addMeal}
         </Link>
       </div>
@@ -113,12 +110,12 @@ export function HomePage() {
             {t.home.noRecentHighRisk}
           </p>
         ) : (
-          <div className="flex flex-col gap-2">
-            {highRisk.map((ing) => (
+          <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+            {highRisk.map((ing, i) => (
               <div
                 key={ing.foodId}
-                className="flex items-center justify-between rounded-xl px-3 py-2"
-                style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+                className="flex items-center justify-between px-3 py-2.5"
+                style={i > 0 ? { borderTop: '1px solid var(--surface-3)' } : undefined}
               >
                 <span className="text-sm truncate" style={{ color: 'var(--text)' }}>
                   {lang === 'en' && ing.nome_en ? ing.nome_en : ing.nome_it}
@@ -139,12 +136,12 @@ export function HomePage() {
             {t.home.noRecentSafe}
           </p>
         ) : (
-          <div className="flex flex-col gap-2">
-            {safe.map((ing) => (
+          <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+            {safe.map((ing, i) => (
               <div
                 key={ing.foodId}
-                className="flex items-center justify-between rounded-xl px-3 py-2"
-                style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+                className="flex items-center justify-between px-3 py-2.5"
+                style={i > 0 ? { borderTop: '1px solid var(--surface-3)' } : undefined}
               >
                 <span className="text-sm truncate" style={{ color: 'var(--text)' }}>
                   {lang === 'en' && ing.nome_en ? ing.nome_en : ing.nome_it}

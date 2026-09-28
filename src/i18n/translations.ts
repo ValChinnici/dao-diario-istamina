@@ -24,7 +24,14 @@ export interface Translations {
     flags: { H: string; 'H!': string; A: string; L: string; B: string }
     note: string
   }
-  search: { placeholder: string; allCategories: string; noResults: string; resultsCount: string; daosinWarning: string }
+  search: {
+    placeholder: string
+    allCategories: string
+    noResults: string
+    resultsCount: string
+    daosinWarning: string
+    emptyPrompt: string
+  }
   logForm: {
     title: string
     editTitle: string
@@ -126,6 +133,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       noResults: 'Nessun alimento trovato',
       resultsCount: 'risultati',
       daosinWarning: 'Serve Daosin, questo alimento ha punteggio Attenzione o Serve Daosin.',
+      emptyPrompt: 'Digita il nome di un alimento oppure scegli una categoria per iniziare.',
     },
     logForm: {
       title: 'Aggiungi pasto',
@@ -240,6 +248,7 @@ export const translations: Record<'it' | 'en', Translations> = {
       noResults: 'No food found',
       resultsCount: 'results',
       daosinWarning: 'Needs Daosin, this food scores Caution or Needs Daosin.',
+      emptyPrompt: 'Type a food name or pick a category to get started.',
     },
     logForm: {
       title: 'Add meal',
